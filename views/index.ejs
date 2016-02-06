@@ -17,6 +17,7 @@
     <h2 class="logo-font"> Otter Code </h2>
   </header>
   <div class="search">
+    <a class="add-link" href="#add-post">+Add Post</a>
     <div class="search-form">
       <label for="">Search Description</label>
       <input type="text" ng-model="search.description" placeholder="all">
@@ -49,7 +50,7 @@
       </div>
     </div>
 
-    <div class="add-post">
+    <div id="add-post">
       <h2>Add Code</h2>
       <form ng-submit="createPost()">
         <input type="text" ng-model="newPost.title" placeholder="title">
