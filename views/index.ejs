@@ -1,22 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="OtterApp">
 <head>
   <meta charset="UTF-8">
   <title>MEAN Otters</title>
+  <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js" charset="utf-8"></script>
+  <script src="/js/main.js" charset="utf-8"></script>
 </head>
 <body>
 
   <header>
-    <nav>
-
-    </nav>
+    <h2 class="logo-font"> Otter Code </h2>
   </header>
+  <div class="search">
+    <div class="search-form">
+      <label for="">Search Description</label>
+      <input type="text" ng-model="search.description" placeholder="all">
+      <label for="">Search By Keywords</label>
+      <input type="text" ng-model="search.keywords" placeholder="all">
+    </div>
+  </div>
 
-  div.
-  <form>
-  </form>
+
+  <div class="container"  ng-controller="PostsController">
+
+    <div class="all-posts">
+      <div ng-repeat="post in posts | filter:search" class="each-post card">
+        <img src="/img/otterspace.png" alt="otter-space" class="otter-space">
+        <h3>{{post.title}}</h3>
+        <h4 class="logo-font">{{post.location}}</h4>
+        <p>{{post.description}}</p>
+        <h6>Keywords: {{post.keywords}}</h6>
+        <p ng-click="updateButton(post._id)">Update</p>
+        <a ng-click="deletePost(post._id)" class="delete-post">- Delete Code Post</a>
+
+        <div class="update-form" ng-show="update === post._id">
+          <input type="text" ng-model="updatePost.title" value="{{post.title}}">
+          <input type="text" ng-model="updatePost.location" value="{{post.location}}">
+          <input type="text" ng-model="updatePost.description" value="{{post.description}}">
+          <input type="text" ng-model="updatePost.keywords" value="{{post.keywords}}">
+          <input type="submit" ng-click="updatePost(post._id)">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="add-post">
+      <h2>Add Code</h2>
+      <form ng-submit="createPost()">
+        <input type="text" ng-model="newPost.title" placeholder="title">
+        <input type="text" ng-model="newPost.location" placeholder="location">
+        <input type="text" ng-model="newPost.description" placeholder="description">
+        <input type="text" ng-model="newPost.keywords" placeholder="keywords">
+        <button type="submit">Add Post</button>
+      </form>
+    </div>
+
+    <div class="setup">
+      <h2>Quick CLI Command Setup</h2>
+      <p>Put the following lines of code in the bottom of your .bash_profile and simply run `wdi 12 1` from your terminal to change directories into week 12, day 1's folder</p>
+      <div class="code-block">
+        <pre><code class="code-snippet">
+          export WDI_WORK_DIR_PATH=~/code/wdi/WDI_WODR_OTTER
+          export WDI_COURSE_START_TIME=1447056000
+        </code></pre>
+      </div>
+    </div>
+
+  </div>
+
 </body>
 </html>

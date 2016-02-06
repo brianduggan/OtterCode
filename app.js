@@ -14,6 +14,9 @@ app.get('/', function(req, res){
   res.render('index');
 })
 
+var postsRouter = require('./routes/posts');
+app.use('/posts', postsRouter);
+
 var port = 8080;
 app.listen(port, function(){
   console.log('...the magic is happening on port ' + port);
