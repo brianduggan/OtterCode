@@ -3,7 +3,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var dbLink = proccess.env.MONGOLAB_URI || 'mongodb://localhost/otter_db01';
+var dbLink = process.env.MONGOLAB_URI || 'mongodb://localhost/otter_db01';
 
 app.use( express.static('./public') );
 app.use( bodyParser.urlencoded({extended: true}) );
@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 var postsRouter = require('./routes/posts');
 app.use('/posts', postsRouter);
 
-var port = proccess.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 app.listen(port, function(){
   console.log('...the magic is happening on port ' + port);
 });
