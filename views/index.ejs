@@ -36,14 +36,14 @@
         <h4 class="logo-font">{{post.location}}</h4>
         <p>{{post.description}}</p>
         <h6>Keywords: {{post.keywords}}</h6>
-        <p ng-click="updateButton(post._id)">Update</p>
+        <p ng-click="updateButton(post._id, post)">Update</p>
         <a ng-click="deletePost(post._id)" class="delete-post">- Delete Code Post</a>
 
         <div class="update-form" ng-show="update === post._id">
-          <input type="text" ng-model="updatePost.title" value="{{post.title}}">
-          <input type="text" ng-model="updatePost.location" value="{{post.location}}">
-          <input type="text" ng-model="updatePost.description" value="{{post.description}}">
-          <input type="text" ng-model="updatePost.keywords" value="{{post.keywords}}">
+          <input type="text" ng-model="changePost.title">
+          <input type="text" ng-model="changePost.location">
+          <input type="text" ng-model="changePost.description">
+          <input type="text" ng-model="changePost.keywords">
           <input type="submit" ng-click="updatePost(post._id)">
         </div>
 

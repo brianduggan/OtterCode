@@ -3,6 +3,7 @@ var app = angular.module('OtterApp', []);
 app.controller('PostsController', ['$scope', '$http', function($scope, $http){
 
   $scope.posts = []
+  $scope.changePost = {}
   $scope.update = 0;
 
   $scope.allPosts = function(){
@@ -11,7 +12,10 @@ app.controller('PostsController', ['$scope', '$http', function($scope, $http){
     })
   }
 
-  $scope.updateButton = function(id){
+  $scope.updateButton = function(id, post){
+
+    $scope.changePost = angular.copy(post);
+
     if ($scope.update !== id){
       $scope.update = id;
     } else {
@@ -21,6 +25,7 @@ app.controller('PostsController', ['$scope', '$http', function($scope, $http){
 
   $scope.createPost = function(){
     var post = {post: $scope.newPost};
+    console.log(post);
     $http.post('/posts', post).then(function(res){
       $scope.allPosts();
     });
@@ -34,10 +39,11 @@ app.controller('PostsController', ['$scope', '$http', function($scope, $http){
   }
 
   $scope.updatePost = function(id){
-    console.log(id);
-    var post = {post: $scope.updatePost}
     console.log(post);
+    var post = {post: $scope.changePost};
+    console.log($scope.changePost);
     $http.patch('/posts/' + id, post).then(function(res){
+      console.log(res);
       $scope.allPosts();
     });
   }

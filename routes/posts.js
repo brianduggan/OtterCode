@@ -27,10 +27,10 @@ router.delete('/:id', function(req, res){
 router.patch('/:id', function(req, res){
   var post = req.body.post;
   console.log(req.params.id);
-  console.log(req);
-  // Post.findByIdAndUpdate(req.params.id, post, {new: true} , function(err, dbPost){
-  //   res.json({post: dbPost});
-  // })
+  console.log(req.body);
+  Post.findByIdAndUpdate(req.params.id, post, {new: true} , function(err, dbPost){
+    res.json({post: dbPost});
+  })
 })
 
 
